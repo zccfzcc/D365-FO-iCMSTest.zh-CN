@@ -1,0 +1,59 @@
+---
+title: 检查货物质量
+description: 此过程显示如何处理质检订单。
+author: perlynne
+manager: AnnBe
+ms.date: 08/29/2018
+ms.topic: business-process
+ms.prod: ''
+ms.service: dynamics-ax-applications
+ms.technology: ''
+ms.search.form: InventQualityOrderTable, InventQualityOrderLineResults, HcmWorkerLookUp
+audience: Application User
+ms.reviewer: shylaw
+ms.search.scope: Core, Operations
+ms.search.region: Global
+ms.search.industry: Distribution
+ms.author: perlynne
+ms.search.validFrom: 2016-06-30
+ms.dyn365.ops.version: Version 7.0.0
+ms.openlocfilehash: 7d10b8809a88fed28eaea387e5c4cf7cc6aa41ba
+ms.sourcegitcommit: 73e10192fb6318dee5bb1129591120199de6a487
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53791"
+---
+# <a name="inspect-the-quality-of-goods"></a><span data-ttu-id="b767c-103">检查货物质量</span><span class="sxs-lookup"><span data-stu-id="b767c-103">Inspect the quality of goods</span></span>
+
+[!include [task guide banner](../../includes/task-guide-banner.md)]
+
+<span data-ttu-id="b767c-104">此过程显示如何处理质检订单。</span><span class="sxs-lookup"><span data-stu-id="b767c-104">This procedure shows you how to process a quality order.</span></span> <span data-ttu-id="b767c-105">您可以使用 USMF 公司演示数据运行此指南。</span><span class="sxs-lookup"><span data-stu-id="b767c-105">You can run this guide in demo data company USMF.</span></span> <span data-ttu-id="b767c-106">在开始此示例过程前，需要确认采购订单为“000016”，并且将产品收据过帐。</span><span class="sxs-lookup"><span data-stu-id="b767c-106">Before you start this example procedure, you need to confirm purchase order “000016” and post a product receipt.</span></span> <span data-ttu-id="b767c-107">这将自动创建质检订单。</span><span class="sxs-lookup"><span data-stu-id="b767c-107">This will automatically create a quality order.</span></span> <span data-ttu-id="b767c-108">质量检查通常由质检员执行。</span><span class="sxs-lookup"><span data-stu-id="b767c-108">Quality inspections are typically carried out by a quality clerk.</span></span>
+
+
+## <a name="select-a-quality-order"></a><span data-ttu-id="b767c-109">选择质检订单。</span><span class="sxs-lookup"><span data-stu-id="b767c-109">Select a quality order</span></span>
+1. <span data-ttu-id="b767c-110">转到“库存管理”>“定期任务”>“质量管理”>“质检订单”。</span><span class="sxs-lookup"><span data-stu-id="b767c-110">Go to Inventory management > Periodic tasks > Quality management > Quality orders.</span></span>
+2. <span data-ttu-id="b767c-111">在列表中，标记所选的行。</span><span class="sxs-lookup"><span data-stu-id="b767c-111">In the list, mark the selected row.</span></span>
+    * <span data-ttu-id="b767c-112">在开始此过程前，选择已创建的质检订单。</span><span class="sxs-lookup"><span data-stu-id="b767c-112">Select the quality order that was created before you started this procedure.</span></span>  
+
+## <a name="record-test-results"></a><span data-ttu-id="b767c-113">记录测试结果</span><span class="sxs-lookup"><span data-stu-id="b767c-113">Record test results</span></span>
+1. <span data-ttu-id="b767c-114">单击“结果”。</span><span class="sxs-lookup"><span data-stu-id="b767c-114">Click Results.</span></span>
+2. <span data-ttu-id="b767c-115">单击“编辑”。</span><span class="sxs-lookup"><span data-stu-id="b767c-115">Click Edit.</span></span>
+3. <span data-ttu-id="b767c-116">在“结果数量”字段中，输入一个数字。</span><span class="sxs-lookup"><span data-stu-id="b767c-116">In the Result quantity field, enter a number.</span></span>
+4. <span data-ttu-id="b767c-117">在列表中，标记所选的行。</span><span class="sxs-lookup"><span data-stu-id="b767c-117">In the list, mark the selected row.</span></span>
+5. <span data-ttu-id="b767c-118">在“结果”字段中，单击下拉按钮以打开查找。</span><span class="sxs-lookup"><span data-stu-id="b767c-118">In the Outcome field, click the drop-down button to open the lookup.</span></span>
+6. <span data-ttu-id="b767c-119">在列表中，找到并选择所需记录。</span><span class="sxs-lookup"><span data-stu-id="b767c-119">In the list, find and select the desired record.</span></span>
+    * <span data-ttu-id="b767c-120">在此示例中，结果将基于预定义的结果。</span><span class="sxs-lookup"><span data-stu-id="b767c-120">In this example the result is based on a pre-defined outcome.</span></span> <span data-ttu-id="b767c-121">通常您可以记录更具体的测试结果，例如大小或其他维度。</span><span class="sxs-lookup"><span data-stu-id="b767c-121">Normally you would record a more specific test result, for example a size or other dimension.</span></span>  
+7. <span data-ttu-id="b767c-122">在列表中，单击所选行中的链接。</span><span class="sxs-lookup"><span data-stu-id="b767c-122">In the list, click the link in the selected row.</span></span>
+8. <span data-ttu-id="b767c-123">单击“保存”。</span><span class="sxs-lookup"><span data-stu-id="b767c-123">Click Save.</span></span>
+9. <span data-ttu-id="b767c-124">关闭该页面。</span><span class="sxs-lookup"><span data-stu-id="b767c-124">Close the page.</span></span>
+
+## <a name="validate-the-quality-order"></a><span data-ttu-id="b767c-125">验证质检订单</span><span class="sxs-lookup"><span data-stu-id="b767c-125">Validate the quality order</span></span>
+1. <span data-ttu-id="b767c-126">单击“验证”。</span><span class="sxs-lookup"><span data-stu-id="b767c-126">Click Validate.</span></span>
+2. <span data-ttu-id="b767c-127">在“验证人员”字段中，单击下拉按钮以打开查找。</span><span class="sxs-lookup"><span data-stu-id="b767c-127">In the Validated by field, click the drop-down button to open the lookup.</span></span>
+    * <span data-ttu-id="b767c-128">选择执行检查的用户。</span><span class="sxs-lookup"><span data-stu-id="b767c-128">Select the user performing the inspection.</span></span>  
+3. <span data-ttu-id="b767c-129">在列表中，单击所选行中的链接。</span><span class="sxs-lookup"><span data-stu-id="b767c-129">In the list, click the link in the selected row.</span></span>
+4. <span data-ttu-id="b767c-130">单击“选择”。</span><span class="sxs-lookup"><span data-stu-id="b767c-130">Click Select.</span></span>
+5. <span data-ttu-id="b767c-131">单击“确定”。</span><span class="sxs-lookup"><span data-stu-id="b767c-131">Click OK.</span></span>
+6. <span data-ttu-id="b767c-132">关闭该页面。</span><span class="sxs-lookup"><span data-stu-id="b767c-132">Close the page.</span></span>
+

@@ -1,0 +1,221 @@
+---
+title: ER 设计以 OPENXML 格式生成报表的配置（2016 年 11 月）
+description: 以下步骤说明属于系统管理员或电子报表开发人员的用户如何创建新电子报表 (ER) 配置，使其包含用于生成 OPENXML 格式的电子文档的模板。
+author: NickSelin
+manager: AnnBe
+ms.date: 08/29/2018
+ms.topic: business-process
+ms.prod: ''
+ms.service: dynamics-ax-applications
+ms.technology: ''
+ms.search.form: ERWorkspace, ERVendorPart, ERSolutionRepositoryTable, ERSolutionRepositoryCreateDropDialog, ERSolutionImport,  ERSolutionTable, ERSolutionCreateDropDialog, EROperationDesigner, ERDataSourceAddDropDialog, ERModelGroupByFunctionEditor, VendPaymMode, LedgerJournalTable, LedgerJournalTransVendPaym
+audience: Application User
+ms.reviewer: kfend
+ms.search.scope: Core, Operations
+ms.search.region: Global
+ms.author: nselin
+ms.search.validFrom: 2016-06-30
+ms.dyn365.ops.version: Version 7.0.0
+ms.openlocfilehash: 9318dde1bb170b28a8581e9798cd05e9a64a3336
+ms.sourcegitcommit: 73e10192fb6318dee5bb1129591120199de6a487
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53304"
+---
+# <a name="er-design-a-configuration-for-generating-reports-in-openxml-format-november-2016"></a><span data-ttu-id="7b8d9-103">ER 设计以 OPENXML 格式生成报表的配置（2016 年 11 月）</span><span class="sxs-lookup"><span data-stu-id="7b8d9-103">ER Design a configuration for generating reports in OPENXML format (November 2016)</span></span>
+
+[!include [task guide banner](../../includes/task-guide-banner.md)]
+
+<span data-ttu-id="7b8d9-104">以下步骤说明属于系统管理员或电子报表开发人员的用户如何创建新电子报表 (ER) 配置，使其包含用于生成 OPENXML 格式的电子文档的模板。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-104">The following steps explain how a user in the System Administrator or Electronic Reporting Developer role can create a new Electronic reporting (ER) configuration that contains a template for generating electronic documents in OPENXML format.</span></span> <span data-ttu-id="7b8d9-105">此配置将用于处理供应商付款。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-105">This configuration will be used for processing vendor payments.</span></span>
+
+
+
+<span data-ttu-id="7b8d9-106">在此示例中，您将创建示例公司 Litware 公司的配置。这些步骤可以在 GBSI 公司执行。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-106">In this example, you will create a configuration for sample company, Litware, Inc. These steps can be performed in GBSI company.</span></span>
+
+
+
+<span data-ttu-id="7b8d9-107">为了完成这些步骤，您必须首先完成“创建配置提供商并标记为有效”这一过程中的步骤。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-107">To complete these steps, you must first complete the steps in the “Create a configuration provider and mark it as active” procedure.</span></span> <span data-ttu-id="7b8d9-108">您还必须具有在创建模板时将导入的 Excel 文件。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-108">You must also have an Excel file which will be imported when creating the template.</span></span> <span data-ttu-id="7b8d9-109">可从[付款报表模板](https://go.microsoft.com/fwlink/?linkid=862266)访问此文件。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-109">This file can be accessed from the [Template of Payment Report](https://go.microsoft.com/fwlink/?linkid=862266).</span></span>
+
+
+## <a name="upload-the-payments-data-model-configuration"></a><span data-ttu-id="7b8d9-110">上载付款数据模型配置</span><span class="sxs-lookup"><span data-stu-id="7b8d9-110">Upload the Payments data model configuration</span></span>
+1. <span data-ttu-id="7b8d9-111">转到“组织管理”>“工作区”>“电子申报”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-111">Go to Organization administration > Workspaces > Electronic reporting.</span></span>
+2. <span data-ttu-id="7b8d9-112">在列表中，标记所选的行。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-112">In the list, mark the selected row.</span></span>
+    * <span data-ttu-id="7b8d9-113">为示例公司选择配置供应商“Litware 公司”。如果没有看到此配置供应商，您必须首先完成“创建配置提供商并标记为有效”这一过程中的步骤。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-113">Select the configuration provider for sample company, Litware, Inc. If you don’t see this configuration provider, you must first complete the steps in the “Create a configuration provider and mark it as active” procedure.</span></span>  
+3. <span data-ttu-id="7b8d9-114">单击“设置有效”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-114">Click Set active.</span></span>
+4. <span data-ttu-id="7b8d9-115">单击“存储库”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-115">Click Repositories.</span></span>
+    * <span data-ttu-id="7b8d9-116">为运营资源类型选择存储库（如果有）。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-116">Select a repository for the Operations Resources type, if available.</span></span> <span data-ttu-id="7b8d9-117">如果可用，跳过有关创建新存储库的以下步骤。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-117">If its available, skip the following steps about creating a new repository.</span></span>  
+5. <span data-ttu-id="7b8d9-118">单击“添加”以打开下拉对话框。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-118">Click Add to open the drop dialog.</span></span>
+6. <span data-ttu-id="7b8d9-119">在“配置存储库类型”字段中，输入“运营资源”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-119">In the Configuration repository type field, enter 'Operations resources'.</span></span>
+7. <span data-ttu-id="7b8d9-120">单击“创建存储库”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-120">Click Create repository.</span></span>
+8. <span data-ttu-id="7b8d9-121">单击“确定”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-121">Click OK.</span></span>
+9. <span data-ttu-id="7b8d9-122">单击“打开”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-122">Click Open.</span></span>
+10. <span data-ttu-id="7b8d9-123">在树结构中，选择“付款模型”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-123">In the tree, select 'Payment model'.</span></span>
+11. <span data-ttu-id="7b8d9-124">单击“导入”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-124">Click Import.</span></span>
+    * <span data-ttu-id="7b8d9-125">导入此数据模型。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-125">Import this data model.</span></span> <span data-ttu-id="7b8d9-126">将它用作新格式配置中的数据源。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-126">It will be used as a data source in a new format configuration.</span></span> <span data-ttu-id="7b8d9-127">如果已经导入了此配置则跳过此步骤。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-127">Skip this step if this configuration has been already imported.</span></span>  
+12. <span data-ttu-id="7b8d9-128">单击“是”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-128">Click Yes.</span></span>
+13. <span data-ttu-id="7b8d9-129">关闭该页面。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-129">Close the page.</span></span>
+14. <span data-ttu-id="7b8d9-130">关闭该页面。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-130">Close the page.</span></span>
+
+## <a name="create-a-new-format-configuration"></a><span data-ttu-id="7b8d9-131">创建新的格式配置</span><span class="sxs-lookup"><span data-stu-id="7b8d9-131">Create a new format configuration</span></span>
+1. <span data-ttu-id="7b8d9-132">单击“申报配置”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-132">Click Reporting configurations.</span></span>
+2. <span data-ttu-id="7b8d9-133">在树结构中，选择“付款模型”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-133">In the tree, select 'Payment model'.</span></span>
+3. <span data-ttu-id="7b8d9-134">单击“创建配置”，以打开下拉对话框。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-134">Click Create configuration to open the drop dialog.</span></span>
+4. <span data-ttu-id="7b8d9-135">在“新建”字段中，输入“基于数据模型付款模型的格式”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-135">In the New field, enter 'Format based on data model PaymentModel'.</span></span>
+    * <span data-ttu-id="7b8d9-136">创建一个基于 PaymentModel 数据模型的格式。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-136">Create a format that is based on the PaymentModel data model.</span></span>  
+5. <span data-ttu-id="7b8d9-137">在“名称”字段中，键入“示例工作表报表”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-137">In the Name field, type 'Sample worksheet report'.</span></span>
+    * <span data-ttu-id="7b8d9-138">示例工作表报表</span><span class="sxs-lookup"><span data-stu-id="7b8d9-138">Sample worksheet report</span></span>  
+6. <span data-ttu-id="7b8d9-139">在“描述”字段中，键入“供应商付款的示例工作表报表”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-139">In the Description field, type 'Sample worksheet report for vendors’ payments'.</span></span>
+    * <span data-ttu-id="7b8d9-140">供应商付款的示例工作表报表。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-140">Sample worksheet report for vendors’ payments.</span></span>  
+7. <span data-ttu-id="7b8d9-141">在“数据模型定义”字段中，输入或选择一个值。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-141">In the Data model definition field, enter or select a value.</span></span>
+    * <span data-ttu-id="7b8d9-142">选择“客户贷方转帐发起”定义。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-142">Select the 'CustomerCreditTransferInitiation' definition.</span></span>  
+8. <span data-ttu-id="7b8d9-143">单击“创建配置”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-143">Click Create configuration.</span></span>
+
+## <a name="design-a-new-document-in-openxml-worksheet-format"></a><span data-ttu-id="7b8d9-144">以 OPENXML 工作表格式设计新文档</span><span class="sxs-lookup"><span data-stu-id="7b8d9-144">Design a new document in OPENXML worksheet format</span></span>
+1. <span data-ttu-id="7b8d9-145">在树结构中，选择“付款模型\示例工作表报表”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-145">In the tree, select 'Payment model\Sample worksheet report'.</span></span>
+2. <span data-ttu-id="7b8d9-146">单击“设计器”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-146">Click Designer.</span></span>
+3. <span data-ttu-id="7b8d9-147">在“操作”窗格上，单击“导入”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-147">On the Action Pane, click Import.</span></span>
+4. <span data-ttu-id="7b8d9-148">单击“从 Excel 导入”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-148">Click Import from Excel.</span></span>
+5. <span data-ttu-id="7b8d9-149">单击“附加”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-149">Click Attachments.</span></span>
+    * <span data-ttu-id="7b8d9-150">作为模板附加现有 Excel 文档。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-150">Attach the existing Excel document as a template.</span></span>  
+6. <span data-ttu-id="7b8d9-151">单击“新建”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-151">Click New.</span></span>
+7. <span data-ttu-id="7b8d9-152">单击“文件”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-152">Click File.</span></span>
+    * <span data-ttu-id="7b8d9-153">指向现有 Excel 文件。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-153">Point to the existing Excel file.</span></span>  
+8. <span data-ttu-id="7b8d9-154">关闭该页面。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-154">Close the page.</span></span>
+9. <span data-ttu-id="7b8d9-155">在“模板”字段中，输入或选择一个值。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-155">In the Template field, enter or select a value.</span></span>
+    * <span data-ttu-id="7b8d9-156">选择用作模板的附加的 Excel 文件。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-156">Select the attached Excel file to be used as a template.</span></span>  
+10. <span data-ttu-id="7b8d9-157">单击“确定”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-157">Click OK.</span></span>
+    * <span data-ttu-id="7b8d9-158">请注意，ER 格式组件已基于引用 MS Excel 文档的结构以设计格式创建（指定范围）。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-158">Note that ER format components have been created in the designing format based on the structure of the referring MS Excel document (named ranges).</span></span>  
+
+## <a name="create-a-new-data-source-to-calculate-totals-by-currency-codes"></a><span data-ttu-id="7b8d9-159">创建新的数据源以按币种代码计算总计</span><span class="sxs-lookup"><span data-stu-id="7b8d9-159">Create a new data source to calculate totals by currency codes</span></span>
+1. <span data-ttu-id="7b8d9-160">单击“映射”选项卡。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-160">Click the Mapping tab.</span></span>
+2. <span data-ttu-id="7b8d9-161">单击“添加根”以打开下拉对话框。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-161">Click Add root to open the drop dialog.</span></span>
+3. <span data-ttu-id="7b8d9-162">在树结构中，选择“功能\分组依据”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-162">In the tree, select 'Functions\Group by'.</span></span>
+4. <span data-ttu-id="7b8d9-163">在“名称”字段中，键入 'PaymentByCurrency'。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-163">In the Name field, type 'PaymentByCurrency'.</span></span>
+    * <span data-ttu-id="7b8d9-164">付款币种</span><span class="sxs-lookup"><span data-stu-id="7b8d9-164">PaymentByCurrency</span></span>  
+5. <span data-ttu-id="7b8d9-165">单击“编辑分组依据”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-165">Click Edit group by.</span></span>
+6. <span data-ttu-id="7b8d9-166">在树结构中，展开“模型”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-166">In the tree, expand 'model'.</span></span>
+7. <span data-ttu-id="7b8d9-167">在树结构中，选择“模型\付款”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-167">In the tree, select 'model\Payments'.</span></span>
+8. <span data-ttu-id="7b8d9-168">单击“将字段添加到”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-168">Click Add field to.</span></span>
+9. <span data-ttu-id="7b8d9-169">单击“什么要分组”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-169">Click What to group.</span></span>
+10. <span data-ttu-id="7b8d9-170">在树结构中，展开“模型\付款”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-170">In the tree, expand 'model\Payments'.</span></span>
+11. <span data-ttu-id="7b8d9-171">在树结构中，选择“模型\付款\货币”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-171">In the tree, select 'model\Payments\Currency'.</span></span>
+12. <span data-ttu-id="7b8d9-172">单击“将字段添加到”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-172">Click Add field to.</span></span>
+13. <span data-ttu-id="7b8d9-173">单击“分组字段”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-173">Click Grouped fields.</span></span>
+14. <span data-ttu-id="7b8d9-174">在树结构中，选择“模型\付款\指示金额(InstructedAmount)”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-174">In the tree, select 'model\Payments\Instructed Amount(InstructedAmount)'.</span></span>
+15. <span data-ttu-id="7b8d9-175">单击“将字段添加到”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-175">Click Add field to.</span></span>
+16. <span data-ttu-id="7b8d9-176">单击“合并字段”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-176">Click Aggregation fields.</span></span>
+17. <span data-ttu-id="7b8d9-177">在“方法”字段中，选择一个选项。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-177">In the Method field, select an option.</span></span>
+    * <span data-ttu-id="7b8d9-178">选择 SUM 合并功能。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-178">Select the SUM aggregation function.</span></span>  
+18. <span data-ttu-id="7b8d9-179">在“名称”字段中，键入 'TotalInstructuredAmount'。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-179">In the Name field, type 'TotalInstructuredAmount'.</span></span>
+    * <span data-ttu-id="7b8d9-180">TotalInstructuredAmount</span><span class="sxs-lookup"><span data-stu-id="7b8d9-180">TotalInstructuredAmount</span></span>  
+19. <span data-ttu-id="7b8d9-181">单击“保存”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-181">Click Save.</span></span>
+20. <span data-ttu-id="7b8d9-182">关闭该页面。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-182">Close the page.</span></span>
+21. <span data-ttu-id="7b8d9-183">单击“确定”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-183">Click OK.</span></span>
+
+## <a name="map-format-components-to-data-sources"></a><span data-ttu-id="7b8d9-184">将格式组件映射到数据源</span><span class="sxs-lookup"><span data-stu-id="7b8d9-184">Map format components to data sources</span></span>
+1. <span data-ttu-id="7b8d9-185">在树结构中，展开“模型”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-185">In the tree, expand 'model'.</span></span>
+2. <span data-ttu-id="7b8d9-186">在树结构中，展开“模型\付款”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-186">In the tree, expand 'model\Payments'.</span></span>
+3. <span data-ttu-id="7b8d9-187">在树结构中，展开“模型\付款\发起方(InitiatingParty)”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-187">In the tree, expand 'model\Payments\Initiating Party(InitiatingParty)'.</span></span>
+4. <span data-ttu-id="7b8d9-188">在树结构中，选择“模型\付款\发起方(InitiatingParty)名称”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-188">In the tree, select 'model\Payments\Initiating Party(InitiatingParty)\Name'.</span></span>
+5. <span data-ttu-id="7b8d9-189">在树结构中，展开或折叠“Excel\报表页眉”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-189">In the tree, expand 'Excel\ReportHeader'.</span></span>
+6. <span data-ttu-id="7b8d9-190">在树结构中，选择“Excel\报表页眉\公司名称”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-190">In the tree, select 'Excel\ReportHeader\CompanyName'.</span></span>
+7. <span data-ttu-id="7b8d9-191">单击“绑定”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-191">Click Bind.</span></span>
+8. <span data-ttu-id="7b8d9-192">在树结构中，展开“模型\付款\贷方”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-192">In the tree, expand 'model\Payments\Creditor'.</span></span>
+9. <span data-ttu-id="7b8d9-193">在树结构中，展开“模型\付款\贷方\身份证明”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-193">In the tree, expand 'model\Payments\Creditor\Identification'.</span></span>
+10. <span data-ttu-id="7b8d9-194">在树结构中，选择“模型\付款\贷方\身份证明\源 ID(SourceID)”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-194">In the tree, select 'model\Payments\Creditor\Identification\Source ID(SourceID)'.</span></span>
+11. <span data-ttu-id="7b8d9-195">在树结构中，展开或折叠“Excel\付款方式行”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-195">In the tree, expand 'Excel\PaymLines'.</span></span>
+12. <span data-ttu-id="7b8d9-196">在树结构中，选择“Excel\付款方式行\供应商帐户名称”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-196">In the tree, select 'Excel\PaymLines\VendAccountName'.</span></span>
+13. <span data-ttu-id="7b8d9-197">单击“绑定”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-197">Click Bind.</span></span>
+14. <span data-ttu-id="7b8d9-198">在树结构中，展开“模型\付款\贷方\名称”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-198">In the tree, select 'model\Payments\Creditor\Name'.</span></span>
+15. <span data-ttu-id="7b8d9-199">在树结构中，选择“Excel\付款方式行\供应商名称”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-199">In the tree, select 'Excel\PaymLines\VendName'.</span></span>
+16. <span data-ttu-id="7b8d9-200">单击“绑定”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-200">Click Bind.</span></span>
+17. <span data-ttu-id="7b8d9-201">在树结构中，展开“模型\付款\贷方代理(CreditorAgent)”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-201">In the tree, expand 'model\Payments\Creditor Agent(CreditorAgent)'.</span></span>
+18. <span data-ttu-id="7b8d9-202">在树结构中，选择“模型\付款\贷方代理(CreditorAgent)\名称”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-202">In the tree, select 'model\Payments\Creditor Agent(CreditorAgent)\Name'.</span></span>
+19. <span data-ttu-id="7b8d9-203">在树结构中，选择“Excel\付款方式行\银行”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-203">In the tree, select 'Excel\PaymLines\Bank'.</span></span>
+20. <span data-ttu-id="7b8d9-204">单击“绑定”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-204">Click Bind.</span></span>
+21. <span data-ttu-id="7b8d9-205">在树结构中，选择“模型\付款\贷方代理(CreditorAgent)\银行代号(RoutingNumber)”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-205">In the tree, select 'model\Payments\Creditor Agent(CreditorAgent)\Routing Number(RoutingNumber)'.</span></span>
+22. <span data-ttu-id="7b8d9-206">在树结构中，选择“Excel\付款方式行\银行代号”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-206">In the tree, select 'Excel\PaymLines\RoutingNumber'.</span></span>
+23. <span data-ttu-id="7b8d9-207">单击“绑定”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-207">Click Bind.</span></span>
+24. <span data-ttu-id="7b8d9-208">在树结构中，展开“模型\付款\贷方科目(CreditorAccount)”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-208">In the tree, expand 'model\Payments\Creditor Account(CreditorAccount)'.</span></span>
+25. <span data-ttu-id="7b8d9-209">在树结构中，展开“模型\付款\贷方科目(CreditorAccount)\标识”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-209">In the tree, expand 'model\Payments\Creditor Account(CreditorAccount)\Identification'.</span></span>
+26. <span data-ttu-id="7b8d9-210">在树结构中，选择“模型\付款\贷方科目(CreditorAccount)\身份证明\编号”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-210">In the tree, select 'model\Payments\Creditor Account(CreditorAccount)\Identification\Number'.</span></span>
+27. <span data-ttu-id="7b8d9-211">在树结构中，选择“Excel\付款方式行\帐号”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-211">In the tree, select 'Excel\PaymLines\AccountNumber'.</span></span>
+28. <span data-ttu-id="7b8d9-212">单击“绑定”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-212">Click Bind.</span></span>
+29. <span data-ttu-id="7b8d9-213">在树结构中，选择“模型\付款\指示金额(InstructedAmount)”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-213">In the tree, select 'model\Payments\Instructed Amount(InstructedAmount)'.</span></span>
+30. <span data-ttu-id="7b8d9-214">在树结构中，选择“Excel\付款方式行\借方”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-214">In the tree, select 'Excel\PaymLines\Debit'.</span></span>
+31. <span data-ttu-id="7b8d9-215">单击“绑定”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-215">Click Bind.</span></span>
+32. <span data-ttu-id="7b8d9-216">在树结构中，展开“模型\付款\贷方”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-216">In the tree, expand 'model\Payments\Creditor'.</span></span>
+33. <span data-ttu-id="7b8d9-217">在树结构中，展开“模型\付款\贷方科目(CreditorAccount)”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-217">In the tree, expand 'model\Payments\Creditor Account(CreditorAccount)'.</span></span>
+34. <span data-ttu-id="7b8d9-218">在树结构中，展开“模型\付款\贷方代理(CreditorAgent)”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-218">In the tree, expand 'model\Payments\Creditor Agent(CreditorAgent)'.</span></span>
+35. <span data-ttu-id="7b8d9-219">在树结构中，选择“模型\付款\货币”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-219">In the tree, select 'model\Payments\Currency'.</span></span>
+36. <span data-ttu-id="7b8d9-220">在树结构中，选择“Excel\付款方式行\货币”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-220">In the tree, select 'Excel\PaymLines\Currency'.</span></span>
+37. <span data-ttu-id="7b8d9-221">单击“绑定”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-221">Click Bind.</span></span>
+38. <span data-ttu-id="7b8d9-222">在树结构中，展开 'PaymentByCurrency'。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-222">In the tree, expand 'PaymentByCurrency'.</span></span>
+39. <span data-ttu-id="7b8d9-223">在树结构中，展开 'PaymentByCurrency\grouped'。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-223">In the tree, expand 'PaymentByCurrency\grouped'.</span></span>
+40. <span data-ttu-id="7b8d9-224">在树结构中，选择“PaymentByCurrency\已分组\货币”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-224">In the tree, select 'PaymentByCurrency\grouped\Currency'.</span></span>
+41. <span data-ttu-id="7b8d9-225">在树结构中，展开或折叠“Excel\汇总行”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-225">In the tree, expand 'Excel\SummaryLines'.</span></span>
+42. <span data-ttu-id="7b8d9-226">在树结构中，选择“Excel\汇总行\汇总货币”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-226">In the tree, select 'Excel\SummaryLines\SummaryCurrency'.</span></span>
+43. <span data-ttu-id="7b8d9-227">单击“绑定”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-227">Click Bind.</span></span>
+44. <span data-ttu-id="7b8d9-228">在树结构中，展开 'PaymentByCurrency\aggregated'。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-228">In the tree, expand 'PaymentByCurrency\aggregated'.</span></span>
+45. <span data-ttu-id="7b8d9-229">在树结构中，选择 'PaymentByCurrency\aggregated\TotalInstructuredAmount'。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-229">In the tree, select 'PaymentByCurrency\aggregated\TotalInstructuredAmount'.</span></span>
+46. <span data-ttu-id="7b8d9-230">在树结构中，选择“Excel\汇总行\汇总金额”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-230">In the tree, select 'Excel\SummaryLines\SummaryAmount'.</span></span>
+47. <span data-ttu-id="7b8d9-231">单击“绑定”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-231">Click Bind.</span></span>
+48. <span data-ttu-id="7b8d9-232">在树结构中，选择 'PaymentByCurrency'。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-232">In the tree, select 'PaymentByCurrency'.</span></span>
+49. <span data-ttu-id="7b8d9-233">在树中，选择“Excel\汇总行”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-233">In the tree, select 'Excel\SummaryLines'.</span></span>
+50. <span data-ttu-id="7b8d9-234">单击“绑定”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-234">Click Bind.</span></span>
+51. <span data-ttu-id="7b8d9-235">在树结构中，选择“模型\付款”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-235">In the tree, select 'model\Payments'.</span></span>
+52. <span data-ttu-id="7b8d9-236">在树结构中，选择“Excel\付款方式行”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-236">In the tree, select 'Excel\PaymLines'.</span></span>
+53. <span data-ttu-id="7b8d9-237">单击“绑定”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-237">Click Bind.</span></span>
+54. <span data-ttu-id="7b8d9-238">单击“保存”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-238">Click Save.</span></span>
+55. <span data-ttu-id="7b8d9-239">关闭该页面。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-239">Close the page.</span></span>
+
+## <a name="use-the-created-configuration-for-payments-processing"></a><span data-ttu-id="7b8d9-240">将创建的配置用于处理付款</span><span class="sxs-lookup"><span data-stu-id="7b8d9-240">Use the created configuration for payments processing</span></span>
+1. <span data-ttu-id="7b8d9-241">单击“更改状态”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-241">Click Change status.</span></span>
+2. <span data-ttu-id="7b8d9-242">单击“完成”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-242">Click Complete.</span></span>
+3. <span data-ttu-id="7b8d9-243">单击“确定”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-243">Click OK.</span></span>
+4. <span data-ttu-id="7b8d9-244">关闭该页面。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-244">Close the page.</span></span>
+5. <span data-ttu-id="7b8d9-245">关闭该页面。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-245">Close the page.</span></span>
+6. <span data-ttu-id="7b8d9-246">转至“应付账款”>“付款设置”>“付款方式”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-246">Go to Accounts payable > Payment setup > Methods of payment.</span></span>
+7. <span data-ttu-id="7b8d9-247">使用快速筛选来筛选带“电子”值的“付款方式”字段。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-247">Use the Quick Filter to filter on the Method of payment field with a value of 'Electronic'.</span></span>
+    * <span data-ttu-id="7b8d9-248">电子</span><span class="sxs-lookup"><span data-stu-id="7b8d9-248">Electronic</span></span>  
+8. <span data-ttu-id="7b8d9-249">单击“编辑”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-249">Click Edit.</span></span>
+9. <span data-ttu-id="7b8d9-250">展开“文件格式”部分。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-250">Expand the File formats section.</span></span>
+10. <span data-ttu-id="7b8d9-251">在“普通电子申报”字段中，选择“是”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-251">Select Yes in the Generic electronic reporting field.</span></span>
+11. <span data-ttu-id="7b8d9-252">在“导出格式配置”字段中，输入或选择一个值。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-252">In the Export format configuration field, enter or select a value.</span></span>
+    * <span data-ttu-id="7b8d9-253">选择“示例工作表报表”配置。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-253">Select the ‘Sample worksheet report’ configuration.</span></span>  
+12. <span data-ttu-id="7b8d9-254">单击“保存”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-254">Click Save.</span></span>
+13. <span data-ttu-id="7b8d9-255">关闭该页面。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-255">Close the page.</span></span>
+
+## <a name="use-the-created-configuration-for-testing-of-payment-journals-processing"></a><span data-ttu-id="7b8d9-256">使用创建的配置进行付款日记帐处理测试</span><span class="sxs-lookup"><span data-stu-id="7b8d9-256">Use the created configuration for testing of payment journals processing</span></span>
+1. <span data-ttu-id="7b8d9-257">转至“应付账款”>“付款”>“付款日记帐”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-257">Go to Accounts payable > Payments > Payment journal.</span></span>
+2. <span data-ttu-id="7b8d9-258">单击“新建”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-258">Click New.</span></span>
+    * <span data-ttu-id="7b8d9-259">新建付款日记帐。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-259">Create a new payment journal.</span></span>  
+3. <span data-ttu-id="7b8d9-260">在“名称”字段中，键入“VendPay”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-260">In the Name field, type 'VendPay'.</span></span>
+    * <span data-ttu-id="7b8d9-261">VendPay</span><span class="sxs-lookup"><span data-stu-id="7b8d9-261">VendPay</span></span>  
+4. <span data-ttu-id="7b8d9-262">单击“行”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-262">Click Lines.</span></span>
+5. <span data-ttu-id="7b8d9-263">在“帐户”字段中，指定值 'GB_SI_000001'。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-263">In the Account field, specify the values 'GB_SI_000001'.</span></span>
+    * <span data-ttu-id="7b8d9-264">GB_SI_000001</span><span class="sxs-lookup"><span data-stu-id="7b8d9-264">GB_SI_000001</span></span>  
+6. <span data-ttu-id="7b8d9-265">将“借方”设置为 '1000'。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-265">Set Debit to '1000'.</span></span>
+7. <span data-ttu-id="7b8d9-266">单击“新建”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-266">Click New.</span></span>
+8. <span data-ttu-id="7b8d9-267">在“帐户”字段中，指定值 'GB_SI_000005'。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-267">In the Account field, specify the values 'GB_SI_000005'.</span></span>
+    * <span data-ttu-id="7b8d9-268">GB_SI_000005</span><span class="sxs-lookup"><span data-stu-id="7b8d9-268">GB_SI_000005</span></span>  
+9. <span data-ttu-id="7b8d9-269">将“借方”设置为 '2000'。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-269">Set Debit to '2000'.</span></span>
+10. <span data-ttu-id="7b8d9-270">在“货币”字段中，键入 'EUR'。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-270">In the Currency field, type 'EUR'.</span></span>
+    * <span data-ttu-id="7b8d9-271">欧元</span><span class="sxs-lookup"><span data-stu-id="7b8d9-271">EUR</span></span>  
+11. <span data-ttu-id="7b8d9-272">在“对方科目”字段中，指定值为 'GBSI OPER'。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-272">In the Offset account field, specify the values 'GBSI OPER'.</span></span>
+    * <span data-ttu-id="7b8d9-273">GBSI OPER</span><span class="sxs-lookup"><span data-stu-id="7b8d9-273">GBSI OPER</span></span>  
+12. <span data-ttu-id="7b8d9-274">在“付款方式”字段中，键入“电子”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-274">In the Method of payment field, type 'Electronic'.</span></span>
+    * <span data-ttu-id="7b8d9-275">电子</span><span class="sxs-lookup"><span data-stu-id="7b8d9-275">Electronic</span></span>  
+13. <span data-ttu-id="7b8d9-276">单击“保存”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-276">Click Save.</span></span>
+14. <span data-ttu-id="7b8d9-277">点击”生成付款“。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-277">Click Generate payments.</span></span>
+15. <span data-ttu-id="7b8d9-278">在“付款方式”字段中，键入“电子”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-278">In the Method of payment field, type 'Electronic'.</span></span>
+    * <span data-ttu-id="7b8d9-279">电子</span><span class="sxs-lookup"><span data-stu-id="7b8d9-279">Electronic</span></span>  
+16. <span data-ttu-id="7b8d9-280">在“文件名”字段中，键入“付款”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-280">In the File name field, type 'Payments'.</span></span>
+    * <span data-ttu-id="7b8d9-281">例如，键入“付款”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-281">For example, type Payments.</span></span>  
+17. <span data-ttu-id="7b8d9-282">在“银行帐户”字段中，键入 'GBSI OPER'。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-282">In the Bank account field, type 'GBSI OPER'.</span></span>
+    * <span data-ttu-id="7b8d9-283">GBSI OPER</span><span class="sxs-lookup"><span data-stu-id="7b8d9-283">GBSI OPER</span></span>  
+18. <span data-ttu-id="7b8d9-284">单击“确定”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-284">Click OK.</span></span>
+19. <span data-ttu-id="7b8d9-285">单击“确定”。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-285">Click OK.</span></span>
+    * <span data-ttu-id="7b8d9-286">审查已创建的工作表，包括付款行详细信息以及用于此付款消息的每个币种代码的总计。</span><span class="sxs-lookup"><span data-stu-id="7b8d9-286">Review the created worksheet, including details of payment lines as well as totals for each currency code used in this payment message.</span></span>  
+
